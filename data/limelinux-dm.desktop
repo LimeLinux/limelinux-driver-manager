@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Lime GNU/Linux Driver Manager
+Name[tr]=Lime GNU/Linux Sürücü Yöneticisi
+GenericName=Lime GNU/Linux Driver Manager
+GenericName[tr]=Lime GNU/Linux Sürücü Yöneticisi
+Exec=limelinux-dm
+Icon=limelinux-dm
+Terminal=false
+Categories=Application;Utility;
+StartupNotify=true

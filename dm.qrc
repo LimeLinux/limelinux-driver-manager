@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/ati.svg</file>
+        <file>images/card.svg</file>
+        <file>images/nvidia.svg</file>
+        <file>images/limelinux-dm.svg</file>
+    </qresource>
+</RCC>
