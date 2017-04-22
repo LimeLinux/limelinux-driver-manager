@@ -8,5 +8,5 @@ GenericName[tr]=Lime GNU/Linux Sürücü Yöneticisi
 Exec=limelinux-dm
 Icon=limelinux-dm
 Terminal=false
-Categories=Application;Utility;
+Categories=Application;System;
 StartupNotify=true
