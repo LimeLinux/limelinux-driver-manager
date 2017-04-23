@@ -20,6 +20,7 @@
 #
 from setuptools import setup, find_packages
 from os import listdir, system
+import glob
 
 
 langs = []
@@ -33,7 +34,8 @@ system('pyrcc5 dm.qrc -o driver_manager/resource.py')
 
 datas = [('/usr/share/applications', ['data/limelinux-dm.desktop']),
          ('/usr/share/icons/hicolor/scalable/apps', ['images/limelinux-dm.svg']),
-         ('/usr/share/limelinux-dm/languages', langs)
+         ('/usr/share/limelinux-dm/languages', langs),
+         ('/usr/share/limelinux-dm/data', glob.glob("data/*.lst"))
          ]
 
 setup(
