@@ -13,14 +13,18 @@ class DriverChecker(object):
     def __init__ (self):
         super().__init__()
 
-        self.driver_packages = {"fglrx": "module-fglrx",
-                                "amdgpu": "module-amdgpu",
-                                "nvidia-current.lst": "module-nvidia-current",
-                                "nvidia304": "module-nvidia304",
-                                "nvidia340": "module-nvidia340"}
+        self.driver_packages = {
+            "vbox": "module-virtualbox",
+            "intel": "xorg-video-intel",
+            "radeon": "xorg-video-radeon",
+            "amdgpu": ("module-amdgpu", "xorg-video-amdgpu"),
+            "nvidia-current": ("module-nvidia-current", "xorg-video-nouveau"),
+            "nvidia304": ("module-nvidia304", "xorg-video-nouveau"),
+            "nvidia340": ("module-nvidia340", "xorg-video-nouveau")
+        }
 
     def driver_check(self):
-        graphics_list = []
+        graphics_list = {}
         for boot_vga_file in glob.glob("{}/*/boot_vga".format(devices)):
             device_path = os.path.dirname(boot_vga_file)
             boot_vga = int(open(boot_vga_file).read().strip())
@@ -31,23 +35,21 @@ class DriverChecker(object):
             # nvidia
             if vendor[2:] == "10de":
                 if device[2:] in driver304:
-                    graphics_list.append((self.driver_packages["nvidia304"], boot_vga))
+                    graphics_list["nvidia"] = (self.driver_packages["nvidia304"], boot_vga)
 
                 elif device[2:] in driver340:
-                    graphics_list.append((self.driver_packages["nvidia340"], boot_vga))
+                    graphics_list["nvidia"] = (self.driver_packages["nvidia340"], boot_vga)
 
                 elif device[2:] in driver_current:
-                    graphics_list.append((self.driver_packages["nvidia-current.lst"], boot_vga))
+                    graphics_list["nvidia"] = (self.driver_packages["nvidia-current"], boot_vga)
 
             # intel
             if vendor[2:] == "8086":
-                graphics_list.append(("intel", boot_vga))
+                graphics_list["intel"] = (self.driver_packages["intel"], boot_vga)
 
             # virtualbox
             if vendor[2:] == "80ee":
-                graphics_list.append(("vbox", boot_vga))
-
-            # fglrx
+                graphics_list["vbox"] = ("", boot_vga)
 
             # amdgpu
 

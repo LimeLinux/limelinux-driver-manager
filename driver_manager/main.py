@@ -42,6 +42,7 @@ class MainWindow(QWidget):
 
         # Content
         self.driverTitle()
+        self.driverTitle()
 
         self.groupbox.layout().addItem(QSpacerItem(20, 40, QSizePolicy.Expanding, QSizePolicy.Expanding))
 
@@ -77,12 +78,16 @@ class MainWindow(QWidget):
 
         grup = QButtonGroup()
 
-        button1 = QRadioButton()
-        button1.setText("Hebele")
-        grup.addButton(button1)
-        self.groupbox.layout().addWidget(button1)
+        layout = QVBoxLayout()
+        layout.setContentsMargins(40, 5, 0, 20)
+        self.groupbox.layout().addLayout(layout)
 
         button1 = QRadioButton()
         button1.setText("Hebele")
         grup.addButton(button1)
-        self.groupbox.layout().addWidget(button1)
+        layout.addWidget(button1)
+
+        button1 = QRadioButton()
+        button1.setText("Hebele")
+        grup.addButton(button1)
+        layout.addWidget(button1)
